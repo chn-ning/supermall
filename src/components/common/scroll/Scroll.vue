@@ -30,16 +30,20 @@
     methods: {
       gotoTop(x, y, time=1000) {
         //scrollTo(x, y, time)回到顶部
-        this.scroll.scrollTo(x, y, time)
+        this.scroll && this.scroll.scrollTo(x, y, time)
       },
       finishPullUp() {
-        this.scroll.finishPullUp() //完成上拉
+        this.scroll && this.scroll.finishPullUp() //完成上拉
+      },
+      refresh() {
+        //刷新以获取最新高度
+        this.scroll.refresh()
       }
     },
     mounted() {
       this.scroll = new BScroll(this.$refs.wrapper, {
-        probeType: this.probeType, //动态决定该值(0|1|2|3),可以提高性能
         click: true,
+        probeType: this.probeType, //动态决定该值(0|1|2|3),可以提高性能
         pullUpLoad: this.pullUpLoad //动态决定是否监听上拉到底部加载更多
       })
       //监听当前滚动的坐标

@@ -1,5 +1,4 @@
-//Home视图(组件)请求数据的函数模块
-
+/* Home首页视图请求数据的函数模块 */
 import {request} from './request'
 
 //请求轮播图多条数据

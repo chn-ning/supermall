@@ -1,6 +1,7 @@
 <template>
-  <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="">
+  <div class="goods-item" @click="handleClick">
+    <!-- <img :src="showImg" alt="" @load="imgLoad"> -->
+    <img v-lazy="showImg" alt="" @load="imgLoad">
     <div class="item-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -17,8 +18,23 @@ export default {
       type: Object,
       default() {
         return {}
-      },
-      required: true
+      }
+    }
+  },
+  computed: {
+    showImg() {
+      return this.goodsItem.image || this.goodsItem.show.img
+    }
+  },
+  methods: {
+    //监听图片加载完成
+    imgLoad() {
+      //通过事件总线方式发射事件
+      this.$bus.$emit('goodsItemImgLoad')
+    },
+    //处理点击跳转详情页
+    handleClick() {
+      this.$router.push('/detail/' + this.goodsItem.iid)
     }
   }
 }

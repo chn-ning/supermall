@@ -15,6 +15,7 @@
     position: fixed;
     bottom: 49px;
     right: 4px;
+    opacity: .8;
   }
 
   .goTop img {
